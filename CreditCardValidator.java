@@ -1,44 +1,44 @@
 import java.util.Scanner;
 
 public class CreditCardValidator {
-    private long creditCardNumber;
+    private long ccNumber;
 
     // Constructor
-    public CreditCardValidator(long creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
+    public CreditCardValidator(long ccNumber) {
+        this.ccNumber = ccNumber;
     }
 
     // Method to validate the credit card number
-    public void validateCreditCard() {
-        String creditCardStr = String.valueOf(creditCardNumber);
+    public void validateCard() {
+        String ccStr = String.valueOf(ccNumber);
         
         // Check if the length is valid
-        if (creditCardStr.length() < 8 || creditCardStr.length() > 9) {
+        if (ccStr.length() < 8 || ccStr.length() > 9) {
             System.out.println("Invalid credit card number");
             return;
         }
 
-        long lastDigit = creditCardNumber % 10;
-        long remainingDigits = creditCardNumber / 10;
+        long lastDigit = ccNumber % 10;
+        long remainingNumber = ccNumber / 10;
 
-        StringBuilder reversedDigits = new StringBuilder(String.valueOf(remainingDigits)).reverse();
-        String reversedStr = reversedDigits.toString();
+        StringBuilder reversed = new StringBuilder(String.valueOf(remainingNumber)).reverse();
+        String reversedStr = reversed.toString();
 
-        int totalSum = 0;
+        int sum = 0;
 
-        // Double digits at odd positions and sum them up
+        // Double odd-positioned digits and add up all digits
         for (int i = 0; i < reversedStr.length(); i++) {
-            int currentDigit = Character.getNumericValue(reversedStr.charAt(i));
-            if (i % 2 == 0) {  // Odd-indexed positions
-                currentDigit *= 2;
-                if (currentDigit > 9) {
-                    currentDigit = currentDigit / 10 + currentDigit % 10;  // Sum the digits if double digit
+            int digit = Character.getNumericValue(reversedStr.charAt(i));
+            if (i % 2 == 0) {  // odd-indexed positions
+                digit *= 2;
+                if (digit > 9) {
+                    digit = digit / 10 + digit % 10;  // Sum the digits if double digit
                 }
             }
-            totalSum += currentDigit;
+            sum += digit;
         }
 
-        long checkDigit = (10 - (totalSum % 10)) % 10;
+        long checkDigit = (10 - (sum % 10)) % 10;
 
         if (checkDigit == lastDigit) {
             System.out.println("Valid credit card number");
@@ -48,11 +48,11 @@ public class CreditCardValidator {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter credit card number:");
-        long creditCardNumber = scanner.nextLong();
+        long ccNumber = sc.nextLong();
 
-        CreditCardValidator validator = new CreditCardValidator(creditCardNumber);
-        validator.validateCreditCard();
+        CreditCardValidator validator = new CreditCardValidator(ccNumber);
+        validator.validateCard();
     }
 }
