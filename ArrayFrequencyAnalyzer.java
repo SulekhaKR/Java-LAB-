@@ -36,3 +36,22 @@ public class ArrayFrequencyAnalyzer {
         findTopKFrequent(4);  // Output: 5 11 7 10
     }
 }
+/*Class Variable:
+
+numberArray: Stores the array of numbers to be analyzed.
+Method findTopKFrequent(int K):
+
+Frequency Calculation:
+A HashMap called frequencyMap stores each number in numberArray as a key and its occurrence count as the value.
+For each number in numberArray, the map updates the frequency count.
+Sorting by Frequency:
+Converts the map entries to a list (sortedEntries) and sorts it by:
+Frequency in descending order.
+If frequencies are equal, by number value in descending order.
+Output:
+Prints the top K numbers with the highest frequency. The loop prints each of the top K frequent numbers based on the sorted list.
+Main Method:
+
+Provides sample arrays and calls findTopKFrequent with specific values for K:
+For the array {3, 1, 4, 4, 5, 2, 6, 1} and K = 2, it outputs "4 1".
+For the array {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9} and K = 4, it outputs "5 11 7 10".*/
