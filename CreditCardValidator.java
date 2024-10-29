@@ -56,3 +56,30 @@ public class CreditCardValidator {
         validator.validateCard();
     }
 }
+/*Class Variables:
+
+ccNumber: Stores the credit card number entered by the user.
+Constructor:
+
+Initializes the ccNumber variable with the provided credit card number.
+Method validateCard():
+
+String Conversion and Length Check:
+Converts ccNumber to a string (ccStr) to check its length.
+If the length is not between 8 and 9 digits, it prints "Invalid credit card number" and exits.
+Extracting Digits:
+lastDigit: Extracts the last digit of the credit card number as the check digit.
+remainingNumber: Removes the last digit from ccNumber.
+Reversing Remaining Digits:
+Converts remainingNumber to a string, reverses it, and stores it as reversedStr.
+Calculating Sum Using Luhn's Double and Sum Method:
+Iterates through each digit in reversedStr, doubling the value of every odd-positioned digit (from the right).
+If doubling results in a two-digit number, it sums those digits.
+Accumulates the sum of all processed digits.
+Check Digit Calculation:
+Calculates the check digit needed for the number to be valid by taking (10 - (sum % 10)) % 10.
+Compares checkDigit with lastDigit to determine if the credit card number is valid, printing "Valid credit card number" if they match and "Invalid credit card number" otherwise.
+Main Method:
+
+Uses Scanner to take input from the user.
+Creates a CreditCardValidator instance with the input number and calls validateCard() to verify its validity.*/
