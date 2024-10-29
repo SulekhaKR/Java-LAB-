@@ -36,3 +36,29 @@ public class ShareTraderProfitCalculator {
         System.out.println(calculateMaxProfit(stockPrices2));  // Output: 100
     }
 }
+/*Method calculateMaxProfit(int[] stockPrices):
+
+Takes an array stockPrices representing the price of a stock for each day.
+Variables and Arrays:
+days: Stores the total number of days based on the length of stockPrices.
+firstTransactionProfit: Array to track the maximum profit achievable up to each day for the first transaction.
+secondTransactionProfit: Array to track the maximum profit achievable from each day onward for the second transaction.
+Calculating Profits for the First Transaction:
+Tracks the minimum stock price encountered so far (minPriceSoFar) as we iterate through the prices.
+For each day i, firstTransactionProfit[i] is calculated as the maximum of:
+The previous day’s profit.
+The profit if selling at the current price (stockPrices[i] - minPriceSoFar).
+Calculating Profits for the Second Transaction:
+Tracks the maximum stock price encountered so far from the end of the array (maxPriceSoFar).
+For each day i (iterating from the end), secondTransactionProfit[i] is calculated as the maximum of:
+The next day’s profit.
+The profit if buying at the current price (maxPriceSoFar - stockPrices[i]).
+Combining Both Transactions:
+Iterates through each day, summing firstTransactionProfit[i] and secondTransactionProfit[i] to find the total profit if the two transactions are combined.
+Updates maxTotalProfit to store the highest possible combined profit.
+Main Method:
+
+Two sample arrays, stockPrices1 and stockPrices2, represent the stock prices over multiple days.
+Calls calculateMaxProfit on each sample array:
+For {10, 22, 5, 75, 65, 80}, it outputs 87.
+For {2, 30, 15, 10, 8, 25, 80}, it outputs 100.*/
