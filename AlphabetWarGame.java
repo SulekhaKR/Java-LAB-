@@ -43,3 +43,26 @@ public class AlphabetWarGame {
         System.out.println(game.determineWinner("z"));         // Right side wins!
     }
 }
+/*Class Variables:
+
+/leftSideStrength and rightSideStrength: Represent the total strength of the left and right sides, respectively. These are initialized to zero by default.
+Constructors:
+
+Default Constructor: Initializes both leftSideStrength and rightSideStrength to zero.
+Overloaded Constructor: Allows custom strengths for the left and right sides.
+Method determineWinner(String word):
+
+Calculates the total strength of letters associated with the left and right sides.
+leftScore and rightScore are incremented based on the letters found in the input word:
+Left Side Letters: 'w' (4 points), 'p' (3 points), 'b' (2 points), 's' (1 point).
+Right Side Letters: 'm' (4 points), 'q' (3 points), 'd' (2 points), 'z' (1 point).
+After iterating through each character, it compares the scores:
+If leftScore > rightScore, the method returns "Left side wins!".
+If rightScore > leftScore, it returns "Right side wins!".
+If the scores are equal, it returns "Let's fight again!".
+main Method:
+
+Creates an instance of AlphabetWarGame and tests the determineWinner method with sample words:
+"zdqmwpbs" results in "Let's fight again!".
+"wwwwwwz" results in "Left side wins!".
+"z" results in "Right side wins!" */
