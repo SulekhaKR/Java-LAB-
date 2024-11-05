@@ -1,3 +1,5 @@
+JAVA Lab 3
+
 -Employee Class: Acts as the base class with attributes employeeId, employeeName, and
 designation. It has a basic calculateBonus method, which prints a generic message.
 
