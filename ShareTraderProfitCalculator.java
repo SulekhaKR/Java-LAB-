@@ -36,7 +36,10 @@ public class ShareTraderProfitCalculator {
         System.out.println(calculateMaxProfit(stockPrices2));  // Output: 100
     }
 }
-/*Method calculateMaxProfit(int[] stockPrices):
+/*ShareTraderProfitCalculator, calculates the maximum possible profit a trader can make with up to two stock transactions (buy and sell) on different days. 
+Each transaction consists of buying and then selling the stock on later days, and the goal is to find the two non-overlapping transactions that maximize the profit.
+
+Method calculateMaxProfit(int[] stockPrices):
 
 Takes an array stockPrices representing the price of a stock for each day.
 Variables and Arrays:
