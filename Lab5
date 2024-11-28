@@ -1,0 +1,58 @@
+// Interface Definition
+interface BankInterface {
+    double getBalance();
+    double getInterestRate();
+}
+
+// Implementing Classes
+class BankA implements BankInterface {
+    private final double balance = 10000;
+    private final double interestRate = 7.0;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+}
+
+class BankB implements BankInterface {
+    private final double balance = 150000;
+    private final double interestRate = 7.4;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+}
+
+class BankC implements BankInterface {
+    private final double balance = 200000;
+    private final double interestRate = 7.9;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+}
+
+// Main Method
+public class Lab5 {
+    public static void main(String[] args) {
+        BankInterface bankA = new BankA();
+        BankInterface bankB = new BankB();
+        BankInterface bankC = new BankC();
+
+        System.out.println("Bank A -> Balance: " + bankA.getBalance() + ", Interest Rate: " + bankA.getInterestRate() + "%");
+        System.out.println("Bank B -> Balance: " + bankB.getBalance() + ", Interest Rate: " + bankB.getInterestRate() + "%");
+        System.out.println("Bank C -> Balance: " + bankC.getBalance() + ", Interest Rate: " + bankC.getInterestRate() + "%");
+    }
+}
