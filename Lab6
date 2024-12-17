@@ -1,1 +1,33 @@
-
+public class CoinCombinations {
+    // Function to find the number of ways to make 'sum' using given coins
+    public static int countWaysToMakeSum(int[] coins, int sum) {
+        // DP array to store the number of ways to make each sum from 0 to 'sum'
+        int[] dp = new int[sum + 1];
+       
+        // There's one way to make sum 0: by not choosing any coins
+        dp[0] = 1;
+       
+        // Loop through each coin
+        for (int coin : coins) {
+            // Update the dp array for all sums that can include this coin
+            for (int i = coin; i <= sum; i++) {
+                dp[i] += dp[i - coin];
+            }
+        }
+       
+        // The value at dp[sum] will be the number of ways to make 'sum'
+        return dp[sum];
+    }
+   
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] coins1 = {1, 2, 3};
+        int sum1 = 4;
+        System.out.println("Number of ways to make sum " + sum1 + " with coins " + java.util.Arrays.toString(coins1) + ": " + countWaysToMakeSum(coins1, sum1));
+       
+        // Test Case 2
+        int[] coins2 = {2, 5, 3, 6};
+        int sum2 = 10;
+        System.out.println("Number of ways to make sum " + sum2 + " with coins " + java.util.Arrays.toString(coins2) + ": " + countWaysToMakeSum(coins2, sum2));
+    }
+}
