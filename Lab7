@@ -1,1 +1,250 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeSet;
+
+
+ class Customer {
+    private int customerId;
+    private String name;
+    private int loyaltyPoints;
+    private HashSet<Product> purchasedProducts;
+
+    // Constructor
+    public Customer(int customerId, String name, int loyaltyPoints) {
+        this.customerId = customerId;
+        this.name = name;
+        this.loyaltyPoints = loyaltyPoints;
+        this.purchasedProducts = new HashSet<>();
+    }
+
+    // Getters and setters
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
+
+    public HashSet<Product> getPurchasedProducts() {
+        return purchasedProducts;
+    }
+
+    // Method to add a product to the customer's list
+    public void addProduct(Product product) {
+        purchasedProducts.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+               "customerId=" + customerId +
+               ", name='" + name + '\'' +
+               ", loyaltyPoints=" + loyaltyPoints +
+               '}';
+    }
+}
+
+
+ class Product {
+    private int productId;
+    private String name;
+    private double price;
+
+    // Constructor
+    public Product(int productId, String name, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+    }
+
+    // Getters and setters
+    public int getProductId() {
+        return productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+               "productId=" + productId +
+               ", name='" + name + '\'' +
+               ", price=" + price +
+               '}';
+    }
+}
+
+
+
+class Order {
+    private int orderId;
+    private Customer customer;
+    private Product product;
+    private Date orderDate;
+    private Date deliveryDate;
+
+    // Constructor
+    public Order(int orderId, Customer customer, Product product, Date orderDate, Date deliveryDate) {
+        this.orderId = orderId;
+        this.customer = customer;
+        this.product = product;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
+    }
+
+    // Getters and setters
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+               "orderId=" + orderId +
+               ", customer=" + customer +
+               ", product=" + product +
+               ", orderDate=" + orderDate +
+               ", deliveryDate=" + deliveryDate +
+               '}';
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+}
+
+
+
+ class ProductPriceComparator implements Comparator<Product> {
+    @Override
+    public int compare(Product p1, Product p2) {
+        return Double.compare(p1.getPrice(), p2.getPrice());
+    }
+}
+
+
+
+ class CustomerLoyaltyComparator implements Comparator<Customer> {
+    @Override
+    public int compare(Customer c1, Customer c2) {
+        return Integer.compare(c1.getLoyaltyPoints(), c2.getLoyaltyPoints());
+    }
+}
+
+
+
+public class AmazonSystem {
+
+    public static void main(String[] args) {
+
+        // Create some customers
+        Customer customer1 = new Customer(1, "Manu", 120);
+        Customer customer2 = new Customer(2, "Shiva", 80);
+
+        // Create some products
+        Product product1 = new Product(101, "Laptop", 1000.0);
+        Product product2 = new Product(102, "Phone", 500.0);
+
+        // Create some orders
+        Order order1 = new Order(1, customer1, product1, new Date(), new Date());
+        Order order2 = new Order(2, customer2, product2, new Date(), new Date());
+
+        // Add products to customer
+        customer1.addProduct(product1);
+        customer2.addProduct(product2);
+
+        // Use ArrayList for customers, products, and orders
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(customer1);
+        customers.add(customer2);
+
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+
+        ArrayList<Order> orders = new ArrayList<>();
+        orders.add(order1);
+        orders.add(order2);
+
+        // Use HashMap for fast retrieval of customers and products
+        HashMap<Integer, Customer> customerMap = new HashMap<>();
+        customerMap.put(customer1.getCustomerId(), customer1);
+        customerMap.put(customer2.getCustomerId(), customer2);
+
+        HashMap<Integer, Product> productMap = new HashMap<>();
+        productMap.put(product1.getProductId(), product1);
+        productMap.put(product2.getProductId(), product2);
+
+        // Use TreeSet with Comparator for sorting products by price
+        TreeSet<Product> sortedProducts = new TreeSet<>(new ProductPriceComparator());
+        sortedProducts.addAll(products);
+
+        // Use TreeSet for sorting customers by loyalty points
+        TreeSet<Customer> sortedCustomers = new TreeSet<>(new CustomerLoyaltyComparator());
+        sortedCustomers.addAll(customers);
+
+        // Print sorted products and customers
+        System.out.println("Sorted Products by Price:");
+        for (Product product : sortedProducts) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nSorted Customers by Loyalty Points:");
+        for (Customer customer : sortedCustomers) {
+            System.out.println(customer);
+        }
+
+        // Print order details
+        System.out.println("\nOrders placed:");
+        for (Order order : orders) {
+            System.out.println(order);
+        }
+    }
+}
 
