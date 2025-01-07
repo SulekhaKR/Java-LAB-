@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class CoinCombinations {
     // Function to find the number of ways to make 'sum' using given coins
     public static int countWaysToMakeSum(int[] coins, int sum) {
@@ -20,14 +22,27 @@ public class CoinCombinations {
     }
    
     public static void main(String[] args) {
-        // Test Case 1
-        int[] coins1 = {1, 2, 3};
-        int sum1 = 4;
-        System.out.println("Number of ways to make sum " + sum1 + " with coins " + java.util.Arrays.toString(coins1) + ": " + countWaysToMakeSum(coins1, sum1));
-       
-        // Test Case 2
-        int[] coins2 = {2, 5, 3, 6};
-        int sum2 = 10;
-        System.out.println("Number of ways to make sum " + sum2 + " with coins " + java.util.Arrays.toString(coins2) + ": " + countWaysToMakeSum(coins2, sum2));
+        Scanner scanner = new Scanner(System.in);
+
+        // Get the number of coins from the user
+        System.out.print("Enter the number of coins: ");
+        int n = scanner.nextInt();
+
+        // Get the coin values from the user
+        int[] coins = new int[n];
+        System.out.println("Enter the coin values:");
+        for (int i = 0; i < n; i++) {
+            coins[i] = scanner.nextInt();
+        }
+
+        // Get the sum from the user
+        System.out.print("Enter the target sum: ");
+        int sum = scanner.nextInt();
+
+        // Calculate and display the number of ways to make the sum
+        int ways = countWaysToMakeSum(coins, sum);
+        System.out.println("Number of ways to make sum " + sum + " with coins " + java.util.Arrays.toString(coins) + ": " + ways);
+
+        scanner.close();
     }
 }
