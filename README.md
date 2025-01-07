@@ -1,22 +1,43 @@
-JAVA Lab 3
+How Does the Code Work?
+Let’s imagine we have a board with boxes labeled from 0 to the amount we want to make (let’s say 4). Each box will tell us how many ways we can make that amount. For example:
 
--Employee Class: Acts as the base class with attributes employeeId, employeeName, and
-designation. It has a basic calculateBonus method, which prints a generic message.
+Box 0 = 1 way (don’t use any coins to make 0 rupees).
+Other boxes start at 0 because we don’t know yet.
+Now, we do this step-by-step:
 
-- HourlyEmployee Class: Inherits from Employee and adds hourlyRate and hoursWorked
-attributes. It has a calculateWeeklySalary method that computes the weekly salary by
-multiplying the hourly rate by hours worked. It overrides calculateBonus to provide
-additional information specific to hourly employees.
+Start with the smallest coin (1 rupee):
 
-- SalariedEmployee Class: Inherits from Employee and introduces monthlySalary. It also has a
-calculateWeeklySalary method, dividing the monthly salary by four to estimate weekly
-earnings. It overrides calculateBonus to tailor the message for salaried employees.
+You go to each box and ask, "If I use a 1 rupee coin, how many ways can I make this amount?"
+Update the boxes to include these new ways.
+Move to the next coin (2 rupees):
 
-- ExecutiveEmployee Class: Extends SalariedEmployee with an additional attribute
-bonusPercentage and further overrides calculateBonus to indicate a bonus based on an
-annual salary percentage.
+Now, ask again, "If I use a 2 rupee coin, how many new ways can I make these amounts?"
+Update the boxes again.
+Do the same for 3 rupees.
 
-- TestPayrollSystem Class: Contains the main method where instances of HourlyEmployee,
-SalariedEmployee, and ExecutiveEmployee are created. Their weekly salaries are calculated,
-and each class&#39;s specific calculateBonus method is called, demonstrating polymorphism in
-action.
+At the end, the number in the box for 4 rupees tells you how many ways you can make 4 rupees.
+
+Why Does This Work?
+You’re keeping track of all the possible ways to make each amount. You start small (with the smallest coin) and keep adding more possibilities as you include bigger coins.
+
+It’s like building with LEGO pieces: first, you see what you can make with small blocks, then you add bigger blocks, and so on. By the end, you know all the different ways to build your "tower" (the amount you want).
+
+Example: Making 4 Rupees with Coins [1, 2, 3]
+Start with no coins:
+
+Ways to make 0 rupees: 1 (just do nothing).
+Add 1-rupee coins:
+
+Ways to make 1 rupee: 1 (just one 1-rupee coin).
+Ways to make 2 rupees: 1 (two 1-rupee coins).
+Ways to make 3 rupees: 1 (three 1-rupee coins).
+Ways to make 4 rupees: 1 (four 1-rupee coins).
+Add 2-rupee coins:
+
+Ways to make 2 rupees: +1 (use one 2-rupee coin).
+Ways to make 3 rupees: +1 (one 2-rupee coin + one 1-rupee coin).
+Ways to make 4 rupees: +1 (two 2-rupee coins).
+Add 3-rupee coins:
+
+Ways to make 3 rupees: +1 (one 3-rupee coin).
+Ways to make 4 rupees: +1 (one 3-rupee coin + one 1-rupee coin)
